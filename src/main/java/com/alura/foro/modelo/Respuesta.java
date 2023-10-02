@@ -1,13 +1,29 @@
-package com.alura.modelo;
+package com.alura.foro.modelo;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import lombok.EqualsAndHashCode;
+
+@Table(name = "respuestas")
+@Entity(name = "Respuesta")
+@EqualsAndHashCode(of = "id")
 public class Respuesta {
 
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String mensaje;
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Topico topico;
 	private LocalDateTime fechaCreacion = LocalDateTime.now();
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Usuario autor;
 	private Boolean solucion = false;
 

@@ -1,7 +1,21 @@
-package com.alura.modelo;
+package com.alura.foro.modelo;
 
+import com.alura.foro.curso.DataNewCurso;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.EqualsAndHashCode;
+
+@Table(name = "cursos")
+@Entity(name = "Curso")
+@EqualsAndHashCode(of = "id")
 public class Curso {
 
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nombre;
 	private String categoria;
@@ -11,6 +25,21 @@ public class Curso {
 		this.categoria = categoria;
 	}
 	
+	public Curso(DataNewCurso dataNewCurso) {
+		this.nombre = dataNewCurso.nombre();
+		this.categoria = dataNewCurso.categoria();
+	}
+	
+
+	public Curso() {
+	}
+
+	public Curso(Long id, String nombre, String categoria) {
+		this.id = id;
+		this.nombre = nombre;
+		this.categoria = categoria;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
