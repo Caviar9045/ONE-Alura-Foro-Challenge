@@ -1,0 +1,1 @@
+ALTER TABLE users MODIFY contrasena VARCHAR(300) NOT NULL;
